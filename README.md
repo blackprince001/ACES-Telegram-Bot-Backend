@@ -1,3 +1,3 @@
 # ACES Telegram Bot Backend
 
-![Backend](backend_design.png)
+![Backend](backend_design.svg)
