@@ -13,7 +13,7 @@ class ExecutiveEvent(BASE):
     event_id = Column(ForeignKey("event.id"), primary_key=True)
     host_id = Column(ForeignKey("user.id"), primary_key=True)
 
-    host_id = relationship("User", back_populates="executives", lazy="selectin")
+    host = relationship("User", back_populates="executives", lazy="selectin")
     event = relationship("Event", back_populates="events", lazy="selectin")
 
 
