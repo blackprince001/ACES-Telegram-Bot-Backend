@@ -4,9 +4,6 @@ from sqlalchemy.orm import declarative_base, relationship
 BASE = declarative_base()
 
 
-# TODO establish a relationship between Events and Executives
-
-
 class ExecutiveEvent(BASE):
     __tablename__ = "executive_event"
 
