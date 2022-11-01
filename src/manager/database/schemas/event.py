@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from datetime import datetime as date
 
-from src.manager.database.models import Event as EventModel
+from src.manager.database.models import User as UserModel
 
 
 class EventBase(BaseModel):
@@ -10,13 +10,16 @@ class EventBase(BaseModel):
 
 
 class EventCreate(EventBase):
-    host: List[EventModel]
+    host: List[UserModel]
+    title: str
     details: str
     guest: list = []
     dt_created: date
+    is_cancelled: bool
 
 
 class Event(EventBase):
     class Config:
         orm_mode = True
         arbitrary_types_allowed = True
+    
