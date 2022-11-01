@@ -18,10 +18,12 @@ class Event(BASE):
     __tablename__ = "event"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
+    title = Column(String, nullable=False, unique=False)
     details = Column(String, nullable=False, unique=False)
     guest = Column(String, nullable=True)
     host = Column(String, nullable=False, unique=True)
     dt_created = Column(DateTime, nullable=False)
+    is_cancelled = Column(Boolean, nullable=False, default=False)
 
     events: list[ExecutiveEvent] = relationship(
         "ExecutiveEvent",
