@@ -47,6 +47,14 @@ class User(BASE):
     )
 
 
+""" 
+Handle issue updates with `sqlalchemy.func` next time with `server_onupdate` and `on_update`
+    date_created = Column(..., default=func.now())
+    last_modified = Column(..., onupdate=func.now())
+OR
+    date_created = Column(..., server_default=func.now())
+    last_modified = Column(..., server_onupdate=func.now())
+"""
 class Issues(BASE):
     __tablename__ = "issues"
 
