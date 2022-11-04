@@ -16,6 +16,7 @@ class EventCreate(EventBase):
     guest: list = []
     dt_created: date
     is_cancelled: bool
+    is_deleted: bool
 
 
 class Event(EventBase):
