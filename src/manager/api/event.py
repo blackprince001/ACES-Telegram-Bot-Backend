@@ -16,14 +16,22 @@ def create_event(db: Session, new_event: EventCreate) -> EventModel:
     return db_event
 
 
+# TODO add error handling messages to this function
 def get_event(db: Session, event_id: int) -> EventModel | None:
-    return db.get(EventModel, event_id)
+
+    db_event = db.get(EventModel, event_id)
+
+    if db_event.is_deleted:
+        return db_event
+    
+    print("Error message about Event being deleted")
 
 
 def get_events(db: Session) -> List[EventModel, None]:
-    return db.scalars(select(EventModel)).all()
+    return db.scalars(select(EventModel).where(EventModel.is_deleted == False)).all()
 
 
+# REDO this function to check for error handling
 def update_event_details(db: Session, event_id: int, new_details: str):
     return db.execute(
         update(EventModel).where(EventModel.id == event_id).values(details=new_details)
@@ -31,6 +39,7 @@ def update_event_details(db: Session, event_id: int, new_details: str):
 
 
 # TODO update existing event title
+# REDO this function to check for error handling
 def update_event_title(db: Session, event_id: int, new_title: str):
     return db.execute(
         update(EventModel).where(EventModel.id == event_id).values(title=new_title)
@@ -59,4 +68,15 @@ def update_event_host(db: Session, host_id: int, event_id: int):
         return
 
     db_event.host += [db_host]
+    db.commit()
+
+
+# TODO add error handling messages to this function
+def delete_event(db: Session, event_id: int):
+    db_event = get_event(db=db, event_id=event_id)
+
+    if db_event.is_deleted:
+        db_event.is_deleted = True
+    else:
+        print("Some Error message about event already being deleted")
     db.commit()
