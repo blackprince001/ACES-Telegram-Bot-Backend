@@ -24,6 +24,7 @@ class Event(BASE):
     host = Column(String, nullable=False, unique=True)
     dt_created = Column(DateTime, nullable=False)
     is_cancelled = Column(Boolean, nullable=False, default=False)
+    is_deleted = Column(Boolean, nullable=False, default=False)
 
     events: list[ExecutiveEvent] = relationship(
         "ExecutiveEvent",
