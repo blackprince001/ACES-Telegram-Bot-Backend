@@ -1,3 +1,3 @@
-# ACES Telegram Bot Backend
+# Event Hosting Management Backend
 
-![Backend](backend_design.svg)
+![Backend](backend_design.png)
