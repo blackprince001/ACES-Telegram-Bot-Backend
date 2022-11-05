@@ -1,4 +1,4 @@
-from sqlalchemy import select, update
+from sqlalchemy import update
 from sqlalchemy.orm import Session
 from manager.database.schemas.issues import IssueCreate
 from src.manager.database.models import Issues as IssuesModel
