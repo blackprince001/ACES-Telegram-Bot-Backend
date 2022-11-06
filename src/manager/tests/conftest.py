@@ -35,6 +35,12 @@ def user():
 
 
 @pytest.fixture(scope="session")
+def executive():
+    return UserCreate(
+        name="Trump", bio="Past US President"
+    )
+
+@pytest.fixture(scope="session")
 def event(user):
     now = datetime.datetime.now()
     return EventCreate(
