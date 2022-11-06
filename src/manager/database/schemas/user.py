@@ -16,15 +16,11 @@ class User(UserBase):
         arbitrary_types_allowed = True
 
 
-class ExecutiveBase(UserBase):
-    pass
-
-
 class ExecutiveCreate(UserCreate):
     is_executive: bool = True
 
 
-class Executive(ExecutiveBase):
+class Executive(UserBase):
     class Config:
         orm_mode = True
         arbitrary_types_allowed = True
