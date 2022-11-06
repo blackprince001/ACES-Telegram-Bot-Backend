@@ -8,10 +8,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 import datetime
 
-from manager.database.models import Base
-from manager.database.schemas.event import EventCreate
-from manager.database.schemas.user import UserCreate
-from manager.database.schemas.issues import IssueCreate
+from src.manager.database.models import BASE
+from src.manager.database.schemas.event import EventCreate
+from src.manager.database.schemas.user import UserCreate
+from src.manager.database.schemas.issues import IssueCreate
 
 
 @pytest.fixture(scope="session")
@@ -52,5 +52,5 @@ def event(user):
 @pytest.fixture
 def db(engine):
     with Session(engine) as session:
-        Base.metadata.create_all(bind=engine)
+        BASE.metadata.create_all(bind=engine)
         yield session
