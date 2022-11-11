@@ -1,8 +1,10 @@
+from typing import List
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from src.manager.database.schemas.executive_event import ExecutiveEventCreate
+
 from src.manager.database.models import ExecutiveEvent as ExecutiveEventModel
-from typing import List
+from src.manager.database.schemas.executive_event import ExecutiveEventCreate
 
 
 def create_executive_event(

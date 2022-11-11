@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import List
 from datetime import datetime as date
+from typing import List
+
+from pydantic import BaseModel
 
 from src.manager.database.models import User as UserModel
 

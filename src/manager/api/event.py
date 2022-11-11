@@ -1,9 +1,12 @@
+from typing import List
+
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
-from src.manager.database.schemas.event import EventCreate
-from src.manager.database.models import Event as EventModel
+
 from src.manager.api.user import get_user
-from typing import List
+from src.manager.database.models import Event as EventModel
+from src.manager.database.schemas.event import EventCreate
+
 
 # TODO write events to database
 def create_event(db: Session, new_event: EventCreate) -> EventModel:

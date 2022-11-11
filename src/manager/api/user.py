@@ -1,8 +1,10 @@
-from sqlalchemy import update, select
-from sqlalchemy.orm import Session
-from src.manager.database.schemas.user import UserCreate
-from src.manager.database.models import User as UserModel
 from typing import List
+
+from sqlalchemy import select, update
+from sqlalchemy.orm import Session
+
+from src.manager.database.models import User as UserModel
+from src.manager.database.schemas.user import UserCreate
 
 
 def create_user(db: Session, new_user: UserCreate) -> UserModel:
