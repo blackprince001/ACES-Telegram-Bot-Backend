@@ -1,4 +1,4 @@
-from src.manager.api.user import (
+from api.user import (
     create_user,
     get_executive,
     get_executives,

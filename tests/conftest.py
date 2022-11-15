@@ -3,15 +3,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+import datetime
+
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-import datetime
 
-from src.manager.database.models import BASE
-from src.manager.database.schemas.event import EventCreate
-from src.manager.database.schemas.user import UserCreate, ExecutiveCreate
-from src.manager.database.schemas.issues import IssueCreate
+from database.models import BASE
+from schemas.event import EventCreate
+from schemas.issues import IssueCreate
+from schemas.user import ExecutiveCreate, UserCreate
 
 
 @pytest.fixture(scope="session")
