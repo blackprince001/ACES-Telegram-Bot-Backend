@@ -17,7 +17,7 @@ from schemas.user import ExecutiveCreate, UserCreate
 
 @pytest.fixture(scope="session")
 def engine():
-    return create_engine(url="sqlite+pysqlite:///database.db", future=True)
+    return create_engine(url="sqlite+pysqlite:///:memory:", future=True)
 
 
 @pytest.fixture(scope="session")

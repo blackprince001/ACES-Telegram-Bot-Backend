@@ -3,15 +3,13 @@ from typing import List
 
 from pydantic import BaseModel
 
-from database.models import User as UserModel
-
 
 class EventBase(BaseModel):
     pass
 
 
 class EventCreate(EventBase):
-    host: List[UserModel]
+    host: list = []
     title: str
     details: str
     guest: list = []
