@@ -9,23 +9,19 @@ from schemas.event import EventCreate
 
 
 # TODO write events to database
-def create_event(db: Session, new_event: EventCreate, host_ids: List[int]) -> EventModel:
+def create_event(
+    db: Session, new_event: EventCreate, host_ids: List[int]
+) -> EventModel:
     db_event = EventModel(**new_event.dict())
-
     hosts = set()
-
     for id in host_ids:
         host = get_user(db=db, user_id=id)
-        
         if host is None:
             # some error code goes here
             return
-
         hosts.add(host)
-
     for host in hosts:
         db_event.host.append(host)
-
     db.add(db_event)
     db.commit()
     db.refresh(db_event)
@@ -35,17 +31,14 @@ def create_event(db: Session, new_event: EventCreate, host_ids: List[int]) -> Ev
 
 # TODO add error handling messages to this function
 def get_event(db: Session, event_id: int) -> EventModel | None:
-
     db_event = db.get(EventModel, event_id)
-
     if db_event.is_deleted:
         return db_event
-    
     print("Error message about Event being deleted")
 
 
 def get_events(db: Session) -> List[EventModel, None]:
-    return db.scalars(select(EventModel).where(EventModel.is_deleted == False)).all()
+    return db.scalars(select(EventModel).where(EventModel.is_deleted is False)).all()
 
 
 # REDO this function to check for error handling
@@ -66,11 +59,9 @@ def update_event_title(db: Session, event_id: int, new_title: str):
 # FIXME update existing guest. Add proper error handling
 def update_event_guest(db: Session, event_id: int, new_guest: str):
     db_event = get_event(db=db, event_id=event_id)
-
     if new_guest in db_event.guest:
         print("Guest already on timeline")
         return
-
     db_event.guest += [new_guest]
     db.commit()
 
@@ -83,7 +74,6 @@ def update_event_host(db: Session, host_id: int, event_id: int):
     if host_id in list(db_event.host):
         print("Host already on Event")
         return
-
     db_event.host += [db_host]
     db.commit()
 
@@ -91,7 +81,6 @@ def update_event_host(db: Session, host_id: int, event_id: int):
 # TODO add error handling messages to this function
 def delete_event(db: Session, event_id: int):
     db_event = get_event(db=db, event_id=event_id)
-
     if db_event.is_deleted:
         db_event.is_deleted = True
     else:

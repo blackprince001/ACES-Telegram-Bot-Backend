@@ -1,6 +1,6 @@
 from typing import List
 
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from database.models import User as UserModel
@@ -22,7 +22,7 @@ def get_user(db: Session, user_id: int) -> UserModel | None:
 
 
 def get_executive(db: Session, user_id: int) -> UserModel | None:
-    return db.scalar(select(UserModel).where(UserModel.is_executive == True))
+    return db.scalar(select(UserModel).where(UserModel.is_executive is True))
 
 
 def get_users(db: Session) -> List[UserModel]:
@@ -30,7 +30,7 @@ def get_users(db: Session) -> List[UserModel]:
 
 
 def get_executives(db: Session) -> List[UserModel]:
-    return db.scalars(select(UserModel).where(UserModel.is_executive == True)).all()
+    return db.scalars(select(UserModel).where(UserModel.is_executive is True)).all()
 
 
 def update_user_name(db: Session, user_id: int, new_name: str):
