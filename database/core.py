@@ -1,7 +1,7 @@
 from sqlalchemy.engine import create_engine
 
 # specify the location of the generated database file.
-database_url = "sqlite+pysqlite:///./src/storage/database.db"
+database_url = "sqlite+pysqlite:///database.db"
 
 # create database engine using sqlachemy
 engine = create_engine(
